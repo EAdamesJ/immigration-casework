@@ -1,9 +1,18 @@
 {
   "name": "immigration-casework",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Source-backed U.S. immigration research and case preparation, with local evidence tools.",
-  "author": {"name": "JeyTid", "url": "https://github.com/EAdamesJ"},
+  "author": {
+    "name": "JeyTid",
+    "url": "https://github.com/EAdamesJ"
+  },
   "repository": "https://github.com/EAdamesJ/immigration-casework",
   "license": "MIT",
-  "keywords": ["immigration", "uscis", "agent-skills", "casework", "evidence"]
+  "keywords": [
+    "immigration",
+    "uscis",
+    "agent-skills",
+    "casework",
+    "evidence"
+  ]
 }
