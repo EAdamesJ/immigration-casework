@@ -1,6 +1,6 @@
 {
   "name": "immigration-casework",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Source-backed U.S. immigration research and case preparation, with local evidence tools.",
   "skills": "./skills/"
 }
