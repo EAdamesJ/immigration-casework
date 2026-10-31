@@ -1,6 +1,6 @@
 ---
 name: us-immigration-casework
-description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
+description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for B1/B2 visitor visas, interview practice, preparation readiness, personalized Visa Bulletin, I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
 ---
 
 # U.S. Immigration Casework
@@ -42,6 +42,10 @@ Reconcile contradictions before relying on them. A recent update can establish t
 | Humanitarian expedite or institutional inquiry | [humanitarian-expedite.md](references/humanitarian-expedite.md) |
 | Accounts, sensitive documents, external actions | [privacy-and-actions.md](references/privacy-and-actions.md) |
 | Structured manifest, ledgers, report, CLI output | [output-contract.md](references/output-contract.md) |
+
+## Visitor visas and personalized bulletins
+
+For B1/B2 intake and qualitative readiness, read [visitor-preparation.md](references/visitor-preparation.md). For an adaptive truthful practice session, read [interview-simulator.md](references/interview-simulator.md). For preference-category availability, read [visa-bulletin.md](references/visa-bulletin.md). For the optional deterministic commands and input contract, read [visitor-tools.md](references/visitor-tools.md). Keep preparation coverage separate from approval probability. Verify every current bulletin cell and USCIS chart at use; local date comparisons never authorize filing.
 
 ## Research before recommending
 
