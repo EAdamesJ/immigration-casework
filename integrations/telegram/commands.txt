@@ -1,0 +1,16 @@
+start - Abrir Ruta Consular
+ayuda - Ver comandos y ejemplos
+pendientes - Consultar mis tareas
+nuevo - Crear una tarea breve
+hecho - Completar una tarea
+zona - Configurar zona horaria
+avisos - Activar o desactivar recordatorios
+recordar - Programar un recordatorio
+entrevista - Practicar B1B2 o visa de inmigrante
+siguiente - Saltar la pregunta actual
+cancelar - Terminar la práctica
+ds260 - Preparar el DS260
+documentos - Revisar tipos de documentos
+id - Ver mi identificador para vinculación
+privacidad - Consultar datos y privacidad
+borrar - Borrar mis datos del bot

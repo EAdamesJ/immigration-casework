@@ -1,0 +1,24 @@
+services:
+  bot:
+    build:
+      context: ../..
+      dockerfile: integrations/telegram/Dockerfile
+    env_file:
+      - ${RUTA_ENV_FILE:?Set an absolute private environment file path}
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    volumes:
+      - ruta_data:/data
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 256m
+    cpus: 1
+    stop_grace_period: 45s
+volumes:
+  ruta_data:
