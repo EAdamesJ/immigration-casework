@@ -1,4 +1,14 @@
 interface:
-  display_name: "Immigration Casework"
-  short_description: "Source-backed U.S. immigration case preparation"
-  default_prompt: "Use $us-immigration-casework to organize my U.S. immigration case, verify sources, and prepare the next reviewable action."
+  display_name: Immigration Casework
+  short_description: Source-backed U.S. immigration case preparation
+  default_prompt: Use $us-immigration-casework to organize my U.S. immigration case,
+    verify sources, and prepare the next reviewable action.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
