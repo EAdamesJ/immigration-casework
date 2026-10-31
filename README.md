@@ -14,6 +14,19 @@ Immigration Casework gives your AI agent a repeatable workflow for researching U
 
 It is an AI research and preparation tool, not a law firm or licensed representative. It does not guarantee outcomes, submit forms, sign documents, or provide private access to government systems.
 
+## v2.1 Ruta Consular Telegram and DS-260
+
+The optional [Ruta Consular Telegram service](integrations/telegram/README.md) adds public private-chat access to personal tasks, opt-in reminders and guided B1/B2 or immigrant interview practice. Profile/menu/photo setup and verification are explicit commands. A valid bot token and a continuously running host are required; neither is bundled or activated on installation. The default bot uses deterministic practice, not a generative model, and does not download identity documents or fill applications in chat.
+
+[DS-260 and document preparation](skills/us-immigration-casework/references/ds260-and-documents.md) adds a private worksheet with per-field evidence/confirmation checks, draft exports and optional PDF text AcroForm/Word placeholder filling. It is not the complete conditional CEAC form and does not sign or submit. Scanned PDFs, unsupported controls, signed/active-content files and complex Word layouts need an appropriate separate workflow. Required optional packages: `pypdf` for fillable PDF, `python-docx` for Word, and existing export dependencies for report formats.
+
+```bash
+python3 skills/us-immigration-casework/scripts/forms.py review --input /private/case/ds260.json
+python3 skills/us-immigration-casework/scripts/forms.py export --input /private/case/ds260.json --out /private/case/ds260-draft
+```
+
+Read the [Telegram workflow](skills/us-immigration-casework/references/telegram-public-bot.md), [deployment steps](integrations/telegram/README.md), [command menu](integrations/telegram/commands.txt) and [privacy-policy template](integrations/telegram/PRIVACY.template.md). Keep the token in the server's secret environment/file. The Docker guide requires a real operator contact and published privacy policy. Tests use simulated Telegram transport; profile configuration does not prove a running service or notification delivery. The Docker image must be built and tested on the deployment host; it was not built in this development environment.
+
 ## v2.0 Optional integrations calendar and collaboration
 
 Work offline with private ICS exports and a local SQLite coordination ledger, then use an explicitly authorized host connector when available. Installation connects no accounts and activates no notifications.

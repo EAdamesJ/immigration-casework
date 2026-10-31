@@ -6,6 +6,14 @@
 
 Funciona como un método de investigación y preparación para agentes compatibles con Agent Skills. Se centra en peticiones familiares y procesos consulares de Estados Unidos. No es un bufete, no se atribuye licencia profesional y no garantiza resultados ni presenta trámites por sí sola.
 
+## v2.1 Ruta Consular en Telegram y DS-260
+
+La [integración de Telegram](integrations/telegram/README.md) incluye **Ruta Consular**, icono, 16 comandos, tareas por usuario, avisos voluntarios y práctica guiada B1/B2 o de inmigrante. Cualquiera puede empezar en privado cuando el operador ponga en marcha el servicio. Configurar el perfil no mantiene un servidor activo. El bot básico no usa un modelo generativo ni descarga expedientes.
+
+El [módulo DS-260 y documentos](skills/us-immigration-casework/references/ds260-and-documents.md) trabaja en privado con hojas de campos, referencias documentales, confirmación del solicitante y exportación de borradores. También rellena campos de texto PDF AcroForm y marcadores Word `{{KEY}}` con dependencias opcionales. La plantilla no sustituye las preguntas actuales del CEAC; el solicitante revisa y firma. No se promete compatibilidad automática con cualquier documento.
+
+Consulta la [configuración paso a paso](integrations/telegram/README.md), el [menú](integrations/telegram/commands.txt) y la [plantilla de privacidad](integrations/telegram/PRIVACY.template.md). Los tokens van únicamente en la configuración secreta del servidor. Falta configurar alojamiento permanente, contacto del operador y política real antes del lanzamiento público. Las pruebas de Telegram usan transporte simulado; el perfil real y la ejecución del servicio se verifican por separado. Docker debe construirse y probarse en el host elegido.
+
 ## v2.0 Conectores calendario avisos y colaboración
 
 La versión añade calendario ICS privado, coordinación local y adaptadores opcionales para herramientas disponibles en el agente. La instalación no conecta cuentas, comparte expedientes ni activa avisos.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0 — 2026-10-31
+
+- Ruta Consular optional Telegram service: private-chat task isolation, opt-in timed reminders, guided B1/B2 and immigrant practice, persistent queues and sanitized API errors.
+- Explicit Telegram profile/menu/photo setup and readback; no token, live worker or hosting is installed automatically.
+- Operator-verified read-only v2.0 ledger bindings; private case task titles and documents are not copied into Telegram.
+- DS-260 and generic document preparation worksheets; optional text AcroForm and Word placeholder filling with draft/readback checks.
+- Docker Compose deployment guide, public-operator privacy template and generated profile artwork.
+- Synthetic transport/isolation tests and actual PDF/Word template smoke checks; live profile setup is separate from runtime/public-launch verification.
+
 ## 2.0.0 — 2026-10-31
 
 - Optional host-bridge adapters for Google/Outlook Calendar, Gmail/Outlook drafts and existing-draft sends, and one-time host reminders. No live account changes occur on installation.
