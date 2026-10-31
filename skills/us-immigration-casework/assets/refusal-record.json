@@ -1,0 +1,17 @@
+{
+  "schema_version": "refusal-1.0",
+  "case_id": "case-synthetic",
+  "notice": {
+    "document_id": "",
+    "page": null,
+    "human_reviewed": false
+  },
+  "grounds": [],
+  "notice_date": null,
+  "post": "",
+  "instructions": "",
+  "requested_documents": [],
+  "applicant_recollection": "",
+  "changed_circumstances": [],
+  "unresolved": []
+}

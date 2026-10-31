@@ -1,0 +1,24 @@
+{
+  "schema_version": "packet-1.0",
+  "case_id": "case-synthetic",
+  "language": "es",
+  "title": "Revision de preparacion consular",
+  "sections": [
+    {
+      "heading": "Situacion y alcance",
+      "body": "[PENDING: resumen con estado de evidencia y fecha de analisis]"
+    },
+    {
+      "heading": "Hallazgos y documentos",
+      "body": "[PENDING: hechos, referencias documento y pagina, contradicciones, OCR sin verificar]"
+    },
+    {
+      "heading": "Preguntas y proximos pasos",
+      "body": "[PENDING: responsables, plazos verificados y decisiones por revisar]"
+    },
+    {
+      "heading": "Fuentes y limites",
+      "body": "[PENDING: URL, seccion, fecha de consulta y limites materiales]"
+    }
+  ]
+}

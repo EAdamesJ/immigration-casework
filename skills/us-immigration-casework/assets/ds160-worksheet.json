@@ -1,0 +1,169 @@
+{
+  "schema_version": "ds160-1.0",
+  "case_id": "case-synthetic",
+  "scope": "B1/B2 preparation worksheet; not a CEAC import file or exhaustive question list",
+  "ceac_question_by_question_reviewed": false,
+  "fields": {
+    "surname": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "given_names": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "birth_date": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "nationality": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "passport_number": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "passport_issue": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "passport_expiry": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "travel_purpose": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "arrival_date": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "departure_date": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "payer": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "us_contact": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "address": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "occupation": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "travel_history": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "prior_us_travel": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "prior_refusal": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "immigrant_petition": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "family": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "education": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "social_media": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "security_questions": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    },
+    "preparer": {
+      "value": null,
+      "status": "unverified",
+      "evidence": [],
+      "applicant_confirmed": false,
+      "explanation": ""
+    }
+  }
+}
