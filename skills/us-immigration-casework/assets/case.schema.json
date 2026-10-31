@@ -1,0 +1,375 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Immigration Casework manifest 1.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "type": "string"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,47}$"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "en",
+        "es"
+      ]
+    },
+    "process": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "consular",
+        "adjustment",
+        "other"
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "uscis_pending",
+        "uscis_approved",
+        "nvc_pending",
+        "nvc_dq",
+        "interview_scheduled",
+        "consular_review",
+        "visa_issued",
+        "admitted",
+        "closed"
+      ]
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/fact"
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "deadlines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/deadline"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "language",
+    "process",
+    "stage",
+    "facts",
+    "events",
+    "evidence",
+    "sources",
+    "deadlines",
+    "actions"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "fact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {},
+        "status": {
+          "type": "string",
+          "enum": [
+            "document_verified",
+            "user_reported",
+            "inferred",
+            "unverified",
+            "contradicted"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          }
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "id",
+        "key",
+        "value",
+        "status",
+        "source_ids"
+      ],
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "uscis_received",
+            "uscis_approved",
+            "nvc_created",
+            "nvc_dq",
+            "interview_scheduled",
+            "interview_taken",
+            "visa_issued",
+            "us_admitted",
+            "other"
+          ]
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "document_verified",
+            "user_reported",
+            "inferred",
+            "unverified",
+            "contradicted"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          }
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "date",
+        "status",
+        "source_ids"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "official_web",
+            "notice",
+            "user_statement",
+            "other"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checked_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "evidence_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "access_method": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "user_copy",
+            "indexed",
+            "historical",
+            "not_checked"
+          ]
+        },
+        "section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supported_claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "access_method"
+      ],
+      "additionalProperties": false
+    },
+    "deadline": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "time_zone": {
+          "type": "string",
+          "pattern": "^(UTC|[A-Za-z_+-]+/[A-Za-z0-9_+./-]+)$"
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "delivery_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "time_zone",
+        "action",
+        "delivery_rule",
+        "source_id"
+      ],
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "review_required",
+            "ready_for_signature",
+            "submitted",
+            "blocked"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          }
+        },
+        "submission_evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "state",
+        "source_ids"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
