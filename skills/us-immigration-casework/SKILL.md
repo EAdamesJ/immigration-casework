@@ -1,6 +1,6 @@
 ---
 name: us-immigration-casework
-description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for optional connectors, calendar reminders, notifications, professional collaboration, DS-160 preparation, document OCR, visa refusal analysis, exportable review packets, B1/B2 visitor visas, interview practice, preparation readiness, personalized Visa Bulletin, I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
+description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for Telegram bots, DS-260, document template filling, optional connectors, calendar reminders, notifications, professional collaboration, DS-160 preparation, document OCR, visa refusal analysis, exportable review packets, B1/B2 visitor visas, interview practice, preparation readiness, personalized Visa Bulletin, I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
 ---
 
 # U.S. Immigration Casework
@@ -54,6 +54,10 @@ For DS-160 preparation and comparison, read [ds160-preparation.md](references/ds
 ## Optional connectors calendar and professional collaboration
 
 For optional host integrations, read [connectors-and-hosts.md](references/connectors-and-hosts.md). For source-backed calendars and reminder limits, read [calendar-and-notifications.md](references/calendar-and-notifications.md). For case-scoped roles, artifact versions, independent review and handoffs, read [professional-collaboration.md](references/professional-collaboration.md). Before operating the private ledger or exporting ICS, read [coordination-tools.md](references/coordination-tools.md). Treat local roles and authorization records as host attestations, not authentication or actual user consent. Discover real tools before promising connectivity; record real provider receipts before claiming scheduling or sending. Installation never activates accounts, notifications or shared access.
+
+## Telegram DS-260 and document templates
+
+For the optional public Telegram bot, read [telegram-public-bot.md](references/telegram-public-bot.md). For DS-260 preparation, read [ds260-and-documents.md](references/ds260-and-documents.md). The bot supports private-chat tasks, opt-in reminders, guided practice and read-only operator-verified ledger links; it does not collect sensitive case documents or invoke a generative model. Use the private form worksheet and explicit template mapping for actual document preparation. Keep bot creation, token setup, hosting and live activation distinct from code installation; no token or server is supplied by the skill.
 
 ## Research before recommending
 
