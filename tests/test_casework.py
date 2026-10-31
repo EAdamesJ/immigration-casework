@@ -183,7 +183,7 @@ class AuditTests(unittest.TestCase):
 class FileTests(unittest.TestCase):
     def test_init_and_audit(self):
         with tempfile.TemporaryDirectory() as temp:
-            output = Path(temp) / "private-case"
+            output = Path(temp).resolve() / "private-case"
             result = cw.init_workspace(output, "synthetic-case", "es")
             self.assertEqual(result["files"], len(list(output.iterdir())))
             self.assertEqual(cw.audit(cw.load_json(output / "case.json"))["issues"], [])
@@ -194,7 +194,7 @@ class FileTests(unittest.TestCase):
 
     def test_existing_workspace_unchanged(self):
         with tempfile.TemporaryDirectory() as temp:
-            path = Path(temp) / "case"
+            path = Path(temp).resolve() / "case"
             cw.init_workspace(path, "synthetic-case", "en")
             before = (path / "case.json").read_bytes()
             with self.assertRaises(ValueError): cw.init_workspace(path, "other-case", "en")
@@ -202,18 +202,18 @@ class FileTests(unittest.TestCase):
 
     def test_git_workspace_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
-            (Path(temp) / ".git").mkdir()
-            with self.assertRaises(ValueError): cw.init_workspace(Path(temp) / "case", "case", "en")
+            (Path(temp).resolve() / ".git").mkdir()
+            with self.assertRaises(ValueError): cw.init_workspace(Path(temp).resolve() / "case", "case", "en")
 
     def test_duplicate_json_keys_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
-            path = Path(temp) / "bad.json"
+            path = Path(temp).resolve() / "bad.json"
             path.write_text('{"stage":"unknown","stage":"admitted"}')
             with self.assertRaises(ValueError): cw.load_json(path)
 
     def test_nonfinite_json_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
-            path = Path(temp) / "bad.json"
+            path = Path(temp).resolve() / "bad.json"
             path.write_text('{"value":NaN}')
             with self.assertRaises(ValueError): cw.load_json(path)
 

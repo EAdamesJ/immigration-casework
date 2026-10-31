@@ -15,7 +15,7 @@ spec.loader.exec_module(installer)
 class InstallerTests(unittest.TestCase):
     def test_targets(self):
         with tempfile.TemporaryDirectory() as temp, patch.dict(os.environ, {}, clear=True):
-            base = Path(temp)
+            base = Path(temp).resolve()
             for target, folder in (("codex", ".agents"), ("claude", ".claude"), ("deepseek", ".dsh")):
                 self.assertEqual(installer.destination(target, "user", user_home=base), base / folder / "skills" / installer.NAME)
                 self.assertEqual(installer.destination(target, "project", project_root=base), base / folder / "skills" / installer.NAME)
@@ -30,21 +30,21 @@ class InstallerTests(unittest.TestCase):
 
     def test_dry_run_does_not_write(self):
         with tempfile.TemporaryDirectory() as temp:
-            dest = Path(temp) / "skills" / installer.NAME
+            dest = Path(temp).resolve() / "skills" / installer.NAME
             result = installer.install(SKILL, dest, dry_run=True)
             self.assertEqual(result["state"], "planned")
             self.assertFalse(dest.parent.exists())
 
     def test_copy_matches_and_repeat_unchanged(self):
         with tempfile.TemporaryDirectory() as temp:
-            dest = Path(temp) / "skills" / installer.NAME
+            dest = Path(temp).resolve() / "skills" / installer.NAME
             self.assertEqual(installer.install(SKILL, dest)["state"], "installed")
             self.assertEqual(installer.fingerprint(dest), installer.fingerprint(SKILL))
             self.assertEqual(installer.install(SKILL, dest)["state"], "unchanged")
 
     def test_conflicting_install_preserved(self):
         with tempfile.TemporaryDirectory() as temp:
-            dest = Path(temp) / "skills" / installer.NAME
+            dest = Path(temp).resolve() / "skills" / installer.NAME
             dest.mkdir(parents=True)
             (dest / "custom.txt").write_text("preserve")
             with self.assertRaises(ValueError): installer.install(SKILL, dest)
@@ -52,7 +52,7 @@ class InstallerTests(unittest.TestCase):
 
     def test_replace_backup_outside_scan(self):
         with tempfile.TemporaryDirectory() as temp:
-            dest = Path(temp) / "skills" / installer.NAME
+            dest = Path(temp).resolve() / "skills" / installer.NAME
             dest.mkdir(parents=True)
             (dest / "custom.txt").write_text("preserve")
             result = installer.install(SKILL, dest, replace=True)
@@ -66,28 +66,28 @@ class InstallerTests(unittest.TestCase):
 
     def test_cache_files_not_copied(self):
         with tempfile.TemporaryDirectory() as temp:
-            source = Path(temp) / "source"
+            source = Path(temp).resolve() / "source"
             source.mkdir()
             (source / "SKILL.md").write_text("reviewed source")
             cache = source / "__pycache__"
             cache.mkdir()
             (cache / "sample.pyc").write_bytes(b"cache")
-            dest = Path(temp) / "skills" / installer.NAME
+            dest = Path(temp).resolve() / "skills" / installer.NAME
             installer.install(source, dest)
             self.assertFalse((dest / "__pycache__").exists())
 
     @unittest.skipUnless(os.name == "posix", "POSIX symlink fixture")
     def test_source_link_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
-            source = Path(temp) / "source"
+            source = Path(temp).resolve() / "source"
             source.mkdir()
             (source / "SKILL.md").write_text("reviewed source")
-            (source / "outside").symlink_to(Path(temp), target_is_directory=True)
-            with self.assertRaises(ValueError): installer.install(source, Path(temp) / "dest")
+            (source / "outside").symlink_to(Path(temp).resolve(), target_is_directory=True)
+            with self.assertRaises(ValueError): installer.install(source, Path(temp).resolve() / "dest")
 
     def test_failed_swap_restores_backup(self):
         with tempfile.TemporaryDirectory() as temp:
-            dest = Path(temp) / "skills" / installer.NAME
+            dest = Path(temp).resolve() / "skills" / installer.NAME
             dest.mkdir(parents=True)
             (dest / "custom.txt").write_text("preserve")
             original = Path.rename
@@ -102,9 +102,9 @@ class InstallerTests(unittest.TestCase):
     @unittest.skipUnless(os.name == "posix", "POSIX symlink fixture")
     def test_symlink_destination_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
-            real = Path(temp) / "real"
+            real = Path(temp).resolve() / "real"
             real.mkdir()
-            link = Path(temp) / "link"
+            link = Path(temp).resolve() / "link"
             link.symlink_to(real, target_is_directory=True)
             with self.assertRaises(ValueError): installer.install(SKILL, link / installer.NAME)
             self.assertEqual(list(real.iterdir()), [])
