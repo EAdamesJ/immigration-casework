@@ -45,7 +45,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --yes tesseract-ocr tesseract-ocr-eng poppler-utils
-          python -m pip install reportlab python-docx Pillow
+          python -m pip install reportlab python-docx Pillow pypdf
       - name: Synthetic OCR and renderer smoke tests
         env:
           CASEWORK_INTEGRATION: "1"
