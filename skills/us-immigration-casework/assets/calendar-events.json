@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "schema_version": "event-2.0",
+      "case_id": "synthetic-case",
+      "event_id": "review-meeting",
+      "revision": 1,
+      "kind": "appointment",
+      "summary": "Casework review",
+      "status": "tentative",
+      "all_day": false,
+      "start": "2027-01-12T09:00:00-04:00",
+      "end": "2027-01-12T09:30:00-04:00",
+      "timezone": "America/Santo_Domingo",
+      "reminder_minutes": [
+        1440,
+        60
+      ],
+      "source": {
+        "document_id": "",
+        "page": null,
+        "status": "unverified",
+        "human_reviewed": false,
+        "checked_on": null,
+        "basis": ""
+      }
+    }
+  ],
+  "example_only": true,
+  "note": "Entirely synthetic; replace with confirmed case-specific facts. This is not a legal deadline."
+}

@@ -1,0 +1,7 @@
+{
+  "operation": "case.create",
+  "actor": "case-owner",
+  "expected_revision": 0,
+  "case_id": "synthetic-case",
+  "example_only": true
+}
