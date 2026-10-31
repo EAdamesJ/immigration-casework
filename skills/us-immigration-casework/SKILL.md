@@ -1,6 +1,6 @@
 ---
 name: us-immigration-casework
-description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for B1/B2 visitor visas, interview practice, preparation readiness, personalized Visa Bulletin, I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
+description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for DS-160 preparation, document OCR, visa refusal analysis, exportable review packets, B1/B2 visitor visas, interview practice, preparation readiness, personalized Visa Bulletin, I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
 ---
 
 # U.S. Immigration Casework
@@ -47,6 +47,10 @@ Reconcile contradictions before relying on them. A recent update can establish t
 
 For B1/B2 intake and qualitative readiness, read [visitor-preparation.md](references/visitor-preparation.md). For an adaptive truthful practice session, read [interview-simulator.md](references/interview-simulator.md). For preference-category availability, read [visa-bulletin.md](references/visa-bulletin.md). For the optional deterministic commands and input contract, read [visitor-tools.md](references/visitor-tools.md). Keep preparation coverage separate from approval probability. Verify every current bulletin cell and USCIS chart at use; local date comparisons never authorize filing.
 
+## DS-160, document OCR, refusals and exports
+
+For DS-160 preparation and comparison, read [ds160-preparation.md](references/ds160-preparation.md). For scanned evidence, read [document-ocr.md](references/document-ocr.md); never promote unreviewed OCR to a verified fact. For negative decisions, read [refusal-analysis.md](references/refusal-analysis.md), preserve all grounds and distinguish 214(b) from 221(g). For curated draft packages, read [export-packages.md](references/export-packages.md). Read [preparation-tools.md](references/preparation-tools.md) before invoking the optional helpers. The host must connect reviewed evidence to the report explicitly; no automatic CEAC submission or legal decision is authorized.
+
 ## Research before recommending
 
 Check current primary sources before consequential legal/procedural guidance. Record title, URL, relevant section, checked date, and effective date when available. Distinguish statute, regulation, controlling decision, agency policy, instructions, notice, and anecdote. A familiar domain or search snippet does not prove the page was read or the rule remains effective.
@@ -82,7 +86,7 @@ For suspected inadmissibility, criminal history, false statements, removal order
 
 ## Use local helpers when useful
 
-Resolve `SKILL_ROOT` to the directory containing this SKILL.md and use its absolute path. These commands use Python 3.10+ and only the standard library. They make no network requests, submit nothing, and do not access government accounts.
+Resolve `SKILL_ROOT` to the directory containing this SKILL.md and use its absolute path. The core commands below use Python 3.10+ and only the standard library; optional OCR and PDF/DOCX exports have separately documented local dependencies. They make no network requests, submit nothing, and do not access government accounts.
 
 ```bash
 python3 "$SKILL_ROOT/scripts/casework.py" wait --received 2024-01-31 --as-of 2024-03-01
