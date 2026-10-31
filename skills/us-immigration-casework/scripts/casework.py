@@ -13,7 +13,7 @@ import sys
 from datetime import date
 from urllib.parse import urlsplit
 
-VERSION = "2.0.0"
+VERSION = "2.1.0"
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 STATUSES = {"document_verified", "user_reported", "inferred", "unverified", "contradicted"}
 OFFICIAL_DOMAINS = (
