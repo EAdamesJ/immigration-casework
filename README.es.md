@@ -70,3 +70,7 @@ python3 scripts/validate_repo.py
 Se aceptan mejoras con casos inventados, plantillas, traducciones y reportes de compatibilidad reproducibles. Consulta [cómo contribuir](CONTRIBUTING.md) y la [guía de evaluación](evals/README.md).
 
 Creado por [JeyTid](https://github.com/EAdamesJ). Licencia [MIT](LICENSE). Proyecto independiente, sin respaldo implícito de USCIS, otras autoridades o proveedores de IA.
+
+## v1.1 — Visitor preparation / Preparación B1/B2
+
+B1/B2 intake, qualitative preparation coverage, adaptive interview practice in English/Spanish, and personalized Visa Bulletin comparisons are included. Read the [visitor workflow](skills/us-immigration-casework/references/visitor-preparation.md), [interview guide](skills/us-immigration-casework/references/interview-simulator.md), [bulletin guide](skills/us-immigration-casework/references/visa-bulletin.md) and [local command contract](skills/us-immigration-casework/references/visitor-tools.md). Preparation is not approval probability; bulletin snapshots require current official-source verification.

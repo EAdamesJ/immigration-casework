@@ -136,3 +136,7 @@ There are no portal scrapers, hidden hooks, automatic submissions, built-in cred
 Useful contributions include reproducible synthetic cases, better bilingual templates, source-policy improvements, accessibility, and verified compatibility reports. Never attach a real case file to an issue or pull request. Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and the [maintainer guide](docs/maintainer-guide.md).
 
 Created by [JeyTid](https://github.com/EAdamesJ). Distributed under the [MIT license](LICENSE). Independent project; no government or AI-vendor endorsement is implied.
+
+## v1.1 — Visitor preparation / Preparación B1/B2
+
+B1/B2 intake, qualitative preparation coverage, adaptive interview practice in English/Spanish, and personalized Visa Bulletin comparisons are included. Read the [visitor workflow](skills/us-immigration-casework/references/visitor-preparation.md), [interview guide](skills/us-immigration-casework/references/interview-simulator.md), [bulletin guide](skills/us-immigration-casework/references/visa-bulletin.md) and [local command contract](skills/us-immigration-casework/references/visitor-tools.md). Preparation is not approval probability; bulletin snapshots require current official-source verification.

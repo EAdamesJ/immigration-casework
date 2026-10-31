@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 — 2026-10-31
+
+- B1/B2 intake and qualitative readiness with no approval predictions.
+- English/Spanish adaptive interview workflow and local question queue.
+- Personalized two-chart bulletin comparisons, provenance and month/USCIS-family checks.
+- Blank visitor worksheet, explicitly synthetic bulletin cells and regression tests.
+
 ## 1.0.0 — 2026-10-31
 
 - Initial portable U.S. immigration research and case-preparation skill.
