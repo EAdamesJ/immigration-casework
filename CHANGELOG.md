@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0 — 2026-10-31
+
+- Optional host-bridge adapters for Google/Outlook Calendar, Gmail/Outlook drafts and existing-draft sends, and one-time host reminders. No live account changes occur on installation.
+- Source-backed private ICS export with explicit timezone/offset checks, UTF-8 folding, stable UID and revision sequence.
+- Case-scoped collaboration ledger with roles, tasks, independent artifact review, SHA-256 versions and optimistic concurrency.
+- Authorization-bound dispatch, expiry/revocation/account checks, deduplication, explicit preflight and unknown-outcome reconciliation.
+- SQLite audit chain and dispatch history; local workflow attestations are not authentication, immutable audit or a hosted collaboration service.
+- Existing v1.x case manifests and document workflows remain supported; the new optional event/coordination schemas are separate.
+
 ## 1.2.0 — 2026-10-31
 
 - DS-160 preparation worksheet, applicant confirmation and selected consistency checks.

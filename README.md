@@ -14,6 +14,30 @@ Immigration Casework gives your AI agent a repeatable workflow for researching U
 
 It is an AI research and preparation tool, not a law firm or licensed representative. It does not guarantee outcomes, submit forms, sign documents, or provide private access to government systems.
 
+## v2.0 Optional integrations calendar and collaboration
+
+Work offline with private ICS exports and a local SQLite coordination ledger, then use an explicitly authorized host connector when available. Installation connects no accounts and activates no notifications.
+
+| Capability | Included | Boundary |
+| --- | --- | --- |
+| Optional adapters | Google Calendar, timed Outlook Calendar, Gmail/Outlook draft and existing-draft send, one-time self reminders | Payload generation and host dispatch protocol; authenticated tools execute live actions |
+| Calendar | UTC ICS, IANA offset checks, all-day dates, display alarms, stable UID and SEQUENCE | No automatic calendar import, legal deadline calculation or guaranteed alarm delivery |
+| Notifications | Due queue, bound authorization, preflight, receipts and deduplication | No built-in daemon, SMS, WhatsApp or automatic retries after uncertain outcomes |
+| Professional review | Case roles, tasks, independent review, version hashes and conflict checks | Local workflow records; not identity verification, tenant security or a shared web app |
+
+Read [connectors and hosts](skills/us-immigration-casework/references/connectors-and-hosts.md), [calendar and notifications](skills/us-immigration-casework/references/calendar-and-notifications.md), [professional collaboration](skills/us-immigration-casework/references/professional-collaboration.md) and the [command contract](skills/us-immigration-casework/references/coordination-tools.md).
+
+```bash
+python3 skills/us-immigration-casework/scripts/agenda.py --input /private/case/calendar-events.json --out /private/case/calendar-001 --generated-at 2026-10-31T15:00:00Z
+python3 skills/us-immigration-casework/scripts/coordination.py init --out /private/case/team --owner case-owner --now 2026-10-31T15:00:00Z
+python3 skills/us-immigration-casework/scripts/coordination.py apply --db /private/case/team/coordination.sqlite3 --input /private/case/operation.json --now 2026-10-31T15:00:00Z
+python3 skills/us-immigration-casework/scripts/coordination.py status --db /private/case/team/coordination.sqlite3 --now 2026-10-31T15:00:00Z
+```
+
+Copy the synthetic calendar/operation templates to a private workspace and use the actual current time. IANA timezones may need the optional `tzdata` package (`python3 -m pip install tzdata`), particularly on Windows. The installer does not install it. Exact existing user authorization can be recorded without asking again; a local authorization flag does not create consent. Read back actual provider state before claiming scheduling or sending. The deterministic suite uses synthetic ledgers and mock capability maps, never live mail or calendar writes. Native host connector execution is not covered by that suite.
+
+Upgrade by reviewing the checkout and using `python3 scripts/install.py --target all --replace`; existing installed copies are backed up. v1.x private case manifests require no automatic migration. Coordination data stays outside the installed skill and public repository. The SQLite ledger is plaintext and not a distributed access-control system; the hash chain is not externally anchored or tamper-proof. Provider account permissions and encryption remain separate responsibilities.
+
 ## v1.2 DS-160 documents and refusal review
 
 Prepare a sourced DS-160 worksheet, compare dates and applicant confirmations, extract scanned documents locally, preserve refusal grounds, and build a curated draft package. The worksheet screens selected fields; it is not the complete conditional CEAC form or a submission service. OCR always starts unverified. Refusal routing does not decide eligibility or infer the officer's reasoning.

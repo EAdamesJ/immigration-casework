@@ -6,6 +6,23 @@
 
 Funciona como un método de investigación y preparación para agentes compatibles con Agent Skills. Se centra en peticiones familiares y procesos consulares de Estados Unidos. No es un bufete, no se atribuye licencia profesional y no garantiza resultados ni presenta trámites por sí sola.
 
+## v2.0 Conectores calendario avisos y colaboración
+
+La versión añade calendario ICS privado, coordinación local y adaptadores opcionales para herramientas disponibles en el agente. La instalación no conecta cuentas, comparte expedientes ni activa avisos.
+
+| Módulo | Resultado |
+| --- | --- |
+| [Conectores](skills/us-immigration-casework/references/connectors-and-hosts.md) | Preparación de acciones para Google/Outlook Calendar, Gmail/Outlook y recordatorios personales; el agente usa la herramienta autenticada disponible |
+| [Calendario y avisos](skills/us-immigration-casework/references/calendar-and-notifications.md) | Fechas documentadas, zonas horarias, exportación ICS y cola con autorizaciones, comprobación previa y resultados registrados |
+| [Colaboración](skills/us-immigration-casework/references/professional-collaboration.md) | Responsables por expediente, tareas, revisión independiente, versiones y detección de conflictos |
+| [Comandos](skills/us-immigration-casework/references/coordination-tools.md) | Base SQLite privada, registro de cambios y protocolo de envío que detiene resultados inciertos |
+
+El calendario no calcula plazos legales ni instala un programador. Una exportación no activa notificaciones. La revisión se vincula al hash de una versión concreta; editarla crea un borrador nuevo. Los roles locales no autentican personas ni sustituyen los permisos del servicio compartido. La base no está cifrada y el registro no es inmutable. Los conectores generan solicitudes para el agente; no incluyen OAuth, credenciales, servidor, sincronización bidireccional o envío autónomo. Outlook admite citas con hora y un aviso en este adaptador; las funciones no disponibles se mantienen bloqueadas o usan el archivo ICS.
+
+Puede hacer falta instalar `tzdata` para zonas horarias, especialmente en Windows. Para actualizar una copia local, revisar los cambios y ejecutar `python3 scripts/install.py --target all --replace`; se conserva una copia anterior. Los expedientes v1.x no necesitan migración automática. Las pruebas usan datos sintéticos y capacidades simuladas; no envían correos ni crean citas reales.
+
+Ejemplo: “Usa us-immigration-casework para organizar las tareas de este expediente, preparar un calendario con las fechas verificadas y dejar un paquete para revisión independiente. Usa conectores solo para las acciones y destinos que autorice.”
+
 ## v1.2 DS-160 OCR negativas y exportaciones
 
 La nueva versión añade un borrador estructurado del DS-160, revisión de fechas y confirmaciones del solicitante, OCR local de documentos, análisis de negativas y paquetes para revisión profesional. La plantilla cubre campos seleccionados y debe contrastarse con cada pregunta del CEAC vigente. No firma ni presenta solicitudes.
