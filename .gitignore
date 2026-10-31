@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.coverage
+htmlcov/
+private-cases/
+case-data/
+client-data/
+.env
+.env.*
+!.env.example
+.DS_Store
+build/
+dist/
+.casework-install-*/

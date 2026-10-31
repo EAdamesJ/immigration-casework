@@ -1,2 +1,138 @@
-# immigration-casework
-Portable U.S. immigration research and case-preparation skill for Codex, Claude Code and DeepSeek Harness. Source-backed workflows, bilingual templates and local evidence tools.
+<p align="center"><img src="docs/assets/cover.svg" alt="Immigration Casework — source-backed preparation for U.S. immigration cases" width="100%"></p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-14b8a6"></a>
+  <img alt="Python 3.10 and newer" src="https://img.shields.io/badge/Python-3.10%2B-3776ab">
+  <img alt="English and Spanish outputs" src="https://img.shields.io/badge/languages-EN%20%2F%20ES-6366f1">
+</p>
+
+<p align="center"><strong>A portable agent skill for turning scattered notices into a traceable case file.</strong><br>Codex · Claude Code · DeepSeek Harness</p>
+
+<p align="center"><a href="README.es.md">Español</a> · <a href="#install">Install</a> · <a href="examples/prompts.en.md">Examples</a> · <a href="docs/compatibility.md">Compatibility & limits</a> · <a href="CONTRIBUTING.md">Contribute</a></p>
+
+Immigration Casework gives your AI agent a repeatable workflow for researching U.S. immigration questions, separating verified evidence from assumptions, organizing documents, and preparing a concrete next action. It focuses on family petitions and consular cases, with specialist handoffs for issues outside that scope.
+
+It is an AI research and preparation tool, not a law firm or licensed representative. It does not guarantee outcomes, submit forms, sign documents, or provide private access to government systems.
+
+## What you get
+
+| Capability | Practical result |
+| --- | --- |
+| Evidence-aware case reconstruction | Facts labeled as documented, user-reported, inferred, unverified, or contradicted |
+| Stage and time analysis | Separate USCIS, NVC, consular, issuance, and admission steps; distinguish elapsed time from forecasts |
+| Form and notice preparation | Field mapping, evidence indexes, RFE/NOID response organization, sourced deadline records |
+| Humanitarian and institutional requests | Reviewable expedite, clinician-letter request, and congressional-inquiry drafts |
+| Current-source workflow | Official-source ledger with sections, access method, checked date, and unresolved questions |
+| Local tools | Private workspace creation, calendar arithmetic, consistency audit, domain classification, best-effort text redaction |
+
+The skill loads detailed references only when needed. The Python tools use the standard library: no package installation, API key, telemetry, or network call is built into them. Your AI host and research tools have their own data handling and access requirements.
+
+## Install
+
+Review the files, then clone and install from a local checkout:
+
+```bash
+git clone https://github.com/EAdamesJ/immigration-casework.git
+cd immigration-casework
+python3 scripts/install.py --target all --dry-run
+python3 scripts/install.py --target all
+```
+
+On Windows, use `py -3` instead of `python3` if that is your Python launcher. Python 3.10+ is needed for the optional scripts; the Markdown workflow itself has no Python dependency.
+
+Install one target with `--target codex`, `--target claude`, or `--target deepseek`. For a project-scoped copy:
+
+```bash
+python3 scripts/install.py --target codex --scope project --project-root /absolute/path/to/project
+```
+
+| Target | User installation | Project installation |
+| --- | --- | --- |
+| Codex | `~/.agents/skills/us-immigration-casework/` | `.agents/skills/us-immigration-casework/` |
+| Claude Code | `~/.claude/skills/us-immigration-casework/` | `.claude/skills/us-immigration-casework/` |
+| DeepSeek Harness | `${DSH_HOME:-~/.dsh}/skills/us-immigration-casework/` | `.dsh/skills/us-immigration-casework/` |
+
+The installer copies local files, changes no host configuration, and does not install an agent application. It refuses conflicting copies unless `--replace` is used; replacement keeps the previous directory outside the skill scanner. Reinstalling identical files leaves them unchanged. Review the printed destination before installing. Each target is updated separately; the multi-target operation is not a cross-directory transaction.
+
+For manual installation, copy the complete `skills/us-immigration-casework/` directory to the appropriate skill root. The repository also includes skill-only Codex and Claude plugin manifests; the local-copy installer is the tested primary path. Claude chat/Cowork and cloud-managed Codex installations use their own account installation mechanisms; a local copy does not install a skill on another device. See [compatibility](docs/compatibility.md).
+
+## Use
+
+In Codex:
+
+```text
+Use $us-immigration-casework to organize my I-130 documents, identify
+unresolved facts, and prepare the next action. Distinguish supplied
+information from anything you verify directly.
+```
+
+In Claude Code:
+
+```text
+/us-immigration-casework Review these notices and build a sourced
+timeline, evidence gaps, and a draft response plan.
+```
+
+In DeepSeek Harness, select the skill in the skill UI, or ask the agent to use the skill named `us-immigration-casework`. The filesystem skill provider must be enabled. No plugin configuration is silently changed by this repository.
+
+Spanish works too:
+
+```text
+Usa la skill us-immigration-casework para revisar mi expediente.
+Prioriza los plazos, identifica contradicciones y prepara los borradores
+que puedas completar. Marca claramente qué falta verificar.
+```
+
+Start with the request and relevant notices. Provide only necessary data, redact unrelated identifiers, and use the host's secure authentication flow for accounts. Store actual case files outside this public repository and outside the installed skill.
+
+## A useful output has an evidence trail
+
+This abbreviated example is entirely synthetic:
+
+| Finding | Evidence status | Next action |
+| --- | --- | --- |
+| Receipt date appears in the supplied notice excerpt | Document-based, not a live portal check | Preserve the source/page reference |
+| A claimed consular interview conflicts with a still-pending USCIS stage | Contradicted | Obtain the interview notice and current decision history |
+| No response deadline was supplied | Unverified | Inspect all pages before calculating or advising a response |
+| Possible urgent support need | User-reported | Request current supporting documents; leave medical conclusions to the clinician |
+
+The agent should produce a usable draft or a precise blocked step, rather than a confident story unsupported by the record. See [English prompts](examples/prompts.en.md), [Spanish prompts](examples/prompts.es.md), and [synthetic intake](examples/synthetic/intake.md).
+
+## Local tools
+
+Run from this checkout; after installation, resolve the installed skill directory instead:
+
+```bash
+python3 skills/us-immigration-casework/scripts/casework.py wait --received 2024-01-31 --as-of 2024-03-01
+python3 skills/us-immigration-casework/scripts/casework.py source --url https://www.uscis.gov/forms
+python3 skills/us-immigration-casework/scripts/casework.py init --out /private/path/case-001 --case-id case-001 --language es
+python3 skills/us-immigration-casework/scripts/casework.py audit --case /private/path/case-001/case.json
+python3 skills/us-immigration-casework/scripts/casework.py redact --input /private/path/note.txt --output /private/path/note-redacted.txt
+```
+
+- `wait` computes elapsed time using a documented calendar convention. It does not calculate legal deadlines or predict approval.
+- `source` identifies an allowlisted official-domain candidate. It does not fetch, authenticate, or date the page.
+- `audit` checks the bundled schema and selected references/chronology/stage rules. A clean audit is not legal review or document authentication.
+- `redact` masks common receipt/A-number, SSN, email, and North American phone patterns in text. It misses other personal information and requires manual review.
+- `init` creates a private skeleton and refuses existing outputs, symlink paths, and Git workspaces. POSIX permissions are restricted; encryption and Windows ACLs remain the user's responsibility.
+
+See the [output contract](skills/us-immigration-casework/references/output-contract.md) for schema and exit codes.
+
+## Quality and boundaries
+
+Run the deterministic suite and package checks without a model or network:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 scripts/validate_repo.py
+```
+
+GitHub Actions defines Linux/macOS/Windows checks. Native Codex, Claude Code, and DeepSeek model sessions are not executed by the unit suite. Compatibility means a researched skill format plus tested local-copy paths, not identical model behavior. The [evaluation guide](evals/README.md) separates behavioral review from deterministic tests.
+
+There are no portal scrapers, hidden hooks, automatic submissions, built-in credentials, hardcoded current fees, or approval predictions. Current legal requirements must be researched when used. Core workflows include truthfulness, human signatures, source checks, appropriate consent, and professional review for material legal issues.
+
+## Contribute
+
+Useful contributions include reproducible synthetic cases, better bilingual templates, source-policy improvements, accessibility, and verified compatibility reports. Never attach a real case file to an issue or pull request. Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and the [maintainer guide](docs/maintainer-guide.md).
+
+Created by [JeyTid](https://github.com/EAdamesJ). Distributed under the [MIT license](LICENSE). Independent project; no government or AI-vendor endorsement is implied.
