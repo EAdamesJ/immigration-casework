@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ruta-consular-bot",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "secrets": { "required": ["TELEGRAM_BOT_TOKEN", "WEBHOOK_SECRET"] },
+  "durable_objects": {
+    "bindings": [{ "name": "CHATS", "class_name": "ConsularChat" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ConsularChat"] }],
+  "vars": {
+    "BOT_OPERATOR_CONTACT": "EAdamesJ — https://github.com/EAdamesJ/immigration-casework/issues (no publiques datos personales)",
+    "BOT_PRIVACY_URL": "https://ruta-consular-bot.enterprisse.workers.dev/privacidad"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": { "enabled": true, "invocation_logs": false },
+    "traces": { "enabled": false }
+  }
+}
