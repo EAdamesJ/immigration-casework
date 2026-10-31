@@ -11,6 +11,7 @@ S=Path(os.environ.get('CASEWORK_SKILL_ROOT',Path(__file__).resolve().parents[1]/
 sys.path.insert(0,str(S/'scripts'))
 import preparation as p
 import document_ocr as o
+import forms as f
 
 
 @unittest.skipUnless(os.environ.get('CASEWORK_INTEGRATION')=='1','Optional local engines; set CASEWORK_INTEGRATION=1')
@@ -44,6 +45,23 @@ class DocumentIntegrationTests(unittest.TestCase):
             root=Path(t).resolve();data=self.packet();data['title']='姓名'
             with self.assertRaises(UnicodeEncodeError):p.export_packet(data,root/'out',('pdf',))
             self.assertFalse((root/'out').exists())
+
+    def test_fillable_pdf_canonical_values_and_appearance(self):
+        from reportlab.pdfgen import canvas
+        from pypdf import PdfReader
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t).resolve();template=root/'form.pdf';doc=canvas.Canvas(str(template))
+            doc.acroForm.textfield(name='NAME',x=60,y=650,width=400,height=24,fontName='Courier');doc.showPage();doc.save()
+            f.fill_pdf(template,{'NAME':'Synthetic Person'},root/'filled')
+            reader=PdfReader(root/'filled/filled-draft.pdf');self.assertEqual(reader.get_fields()['NAME']['/V'],'Synthetic Person')
+            widget=reader.pages[0]['/Annots'][0].get_object();self.assertTrue(widget['/AP']['/N'].get_object().get_data());self.assertEqual(widget['/V'],'Synthetic Person')
+
+    def test_docx_split_placeholder_preserves_first_run_style(self):
+        from docx import Document
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t).resolve();doc=Document();p=doc.add_paragraph('Name: ');p.add_run('{{NA').bold=True;p.add_run('ME}}').bold=True;doc.save(root/'template.docx')
+            f.fill_docx(root/'template.docx',{'NAME':'Synthetic Person'},root/'filled')
+            result=Document(root/'filled/filled-draft.docx');self.assertEqual(result.paragraphs[0].text,'Name: Synthetic Person');self.assertTrue(result.paragraphs[0].runs[1].bold)
 
 
 if __name__=='__main__':unittest.main()
