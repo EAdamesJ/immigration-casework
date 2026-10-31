@@ -1,0 +1,13 @@
+# Personalized Visa Bulletin
+
+Establish the relevant month, analysis date, immigration preference category, priority date, process (consular/adjustment), and applicable chargeability area. Verify chargeability rather than equating it automatically with citizenship or present residence; refer cross-chargeability and age/category-conversion issues for specific legal review. Identify immediate-relative cases before applying preference cutoffs.
+
+Retrieve the exact official bulletin for the relevant month from https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html. Read its table headings, country columns, footnotes and subsequent corrections. Record source URL, checked date, extraction method and verified cell. Keep Final Action Dates and Dates for Filing separate. A priority date must be earlier than the listed cutoff, not equal. Interpret C as current and U as unavailable for that cell. Missing/ambiguous cells are unknown, never current.
+
+For adjustment, separately retrieve https://www.uscis.gov/visabulletininfo and verify the chart selected for that exact month and family/employment group, including applicable exceptions. Without that verification, leave USCIS chart selection unknown. Consular document submission also depends on agency notification/instructions; do not turn a date comparison into filing advice, an interview date or an approval prediction.
+
+Use assets/bulletin-snapshot.json as a single-case, manually extracted snapshot format. Replace every synthetic value and checked date after actually inspecting the source. rows contains category, country (exact column label), chart (final_action/filing), cutoff (ISO date/C/U). For adjustment, optional uscis_chart requires month, family (family/employment), chart, URL and checked_at. The tool validates metadata and date mechanics only; it does not fetch or authenticate table contents. A source URL alone is not proof of accurate extraction. No automatic monthly monitoring is included.
+
+Keep upcoming, current and historical months explicit. Compare successive verified snapshots only for the same category, chargeability and chart; report advance/retrogression/no change, handling transitions to/from C/U descriptively. Do not extrapolate an approval date from the rate of change. Future priority dates, malformed dates, duplicate cells and mismatched USCIS months require correction before comparison.
+
+Test boundary equality, leap dates, missing rows, C/U, future bulletin month, chargeability mismatch and USCIS chart/family mismatches. Snapshot dates are not legal deadlines. Primary research review: 2026-10-31; verify the live source for each use.
