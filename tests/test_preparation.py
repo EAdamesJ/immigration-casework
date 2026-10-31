@@ -128,8 +128,10 @@ class PreparationTests(unittest.TestCase):
 
     def test_nonfinite_json_rejected(self):
         with tempfile.TemporaryDirectory() as t:
-            file=Path(t)/'in.json';file.write_text('{"x":NaN}')
-            with self.assertRaises(ValueError):p.load(file)
+            file=Path(t)/'in.json'
+            for value in ('NaN','Infinity','-Infinity','1e999'):
+                file.write_text('{"x":'+value+'}')
+                with self.assertRaises(ValueError):p.load(file)
 
     def test_cli_error_omits_private_input(self):
         with tempfile.TemporaryDirectory() as t:
