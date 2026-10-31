@@ -7,6 +7,7 @@ from datetime import date
 import hashlib
 import html
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -24,6 +25,11 @@ BOOL_FIELDS = ('prior_refusal', 'immigrant_petition')
 
 
 def load(path):
+    def finite_float(number):
+        value = float(number)
+        if not math.isfinite(value):
+            raise ValueError('Nonfinite number.')
+        return value
     def unique(pairs):
         result = {}
         for key, value in pairs:
@@ -33,7 +39,7 @@ def load(path):
         return result
     if Path(path).stat().st_size > 10_000_000:
         raise ValueError('JSON exceeds 10 MB limit.')
-    return json.loads(Path(path).read_text(encoding='utf-8'), object_pairs_hook=unique,
+    return json.loads(Path(path).read_text(encoding='utf-8'), object_pairs_hook=unique, parse_float=finite_float,
                       parse_constant=lambda _: (_ for _ in ()).throw(ValueError('Nonfinite number.')))
 
 
