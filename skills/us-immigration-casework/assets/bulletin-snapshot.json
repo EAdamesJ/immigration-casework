@@ -1,0 +1,22 @@
+{
+  "month": "2024-01",
+  "source": {
+    "url": "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html",
+    "checked_at": "2024-01-01"
+  },
+  "rows": [
+    {
+      "category": "F2A",
+      "country": "SYNTHETIC",
+      "chart": "final_action",
+      "cutoff": "2023-01-01"
+    },
+    {
+      "category": "F2A",
+      "country": "SYNTHETIC",
+      "chart": "filing",
+      "cutoff": "C"
+    }
+  ],
+  "example_only": "Invented test cells and source dates. Replace after live official verification."
+}

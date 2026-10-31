@@ -1,0 +1,50 @@
+{
+  "visa": "B1/B2",
+  "topics": {
+    "purpose": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "duration": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "funding": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "return_plan": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "occupation": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "travel_history": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "us_contacts": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "prior_refusals": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    },
+    "immigrant_petitions": {
+      "answer": "",
+      "status": "unverified",
+      "evidence_ids": []
+    }
+  }
+}
