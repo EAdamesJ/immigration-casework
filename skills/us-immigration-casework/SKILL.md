@@ -1,6 +1,6 @@
 ---
 name: us-immigration-casework
-description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for DS-160 preparation, document OCR, visa refusal analysis, exportable review packets, B1/B2 visitor visas, interview practice, preparation readiness, personalized Visa Bulletin, I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
+description: Research and prepare source-backed U.S. immigration case files, verify USCIS/NVC/consular stages and processing-time claims, organize evidence, review forms and notices, and draft expedite or congressional requests. Use for optional connectors, calendar reminders, notifications, professional collaboration, DS-160 preparation, document OCR, visa refusal analysis, exportable review packets, B1/B2 visitor visas, interview practice, preparation readiness, personalized Visa Bulletin, I-130, family petitions, consular processing, RFE/NOID, delays, humanitarian expedite, or related immigration document preparation; also solicitudes, peticiones, migración, expedientes y agilización de Estados Unidos. Not a licensed representative or autonomous filing service.
 ---
 
 # U.S. Immigration Casework
@@ -50,6 +50,10 @@ For B1/B2 intake and qualitative readiness, read [visitor-preparation.md](refere
 ## DS-160, document OCR, refusals and exports
 
 For DS-160 preparation and comparison, read [ds160-preparation.md](references/ds160-preparation.md). For scanned evidence, read [document-ocr.md](references/document-ocr.md); never promote unreviewed OCR to a verified fact. For negative decisions, read [refusal-analysis.md](references/refusal-analysis.md), preserve all grounds and distinguish 214(b) from 221(g). For curated draft packages, read [export-packages.md](references/export-packages.md). Read [preparation-tools.md](references/preparation-tools.md) before invoking the optional helpers. The host must connect reviewed evidence to the report explicitly; no automatic CEAC submission or legal decision is authorized.
+
+## Optional connectors calendar and professional collaboration
+
+For optional host integrations, read [connectors-and-hosts.md](references/connectors-and-hosts.md). For source-backed calendars and reminder limits, read [calendar-and-notifications.md](references/calendar-and-notifications.md). For case-scoped roles, artifact versions, independent review and handoffs, read [professional-collaboration.md](references/professional-collaboration.md). Before operating the private ledger or exporting ICS, read [coordination-tools.md](references/coordination-tools.md). Treat local roles and authorization records as host attestations, not authentication or actual user consent. Discover real tools before promising connectivity; record real provider receipts before claiming scheduling or sending. Installation never activates accounts, notifications or shared access.
 
 ## Research before recommending
 
