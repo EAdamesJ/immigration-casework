@@ -16,6 +16,8 @@ It is an AI research and preparation tool, not a law firm or licensed representa
 
 ## v2.1 Ruta Consular Telegram and DS-260
 
+The [Cloudflare adapter 2.1.1](integrations/telegram/cloudflare/README.md) adds an authenticated webhook, one SQLite Durable Object per private chat, durable alarms and a privacy page. It hosts the bot without an always-on computer or VPS. Secrets and webhook activation are explicit; pending updates are preserved. It does not migrate private case files or activate an account when the skill is installed. Availability remains subject to operators, providers and account limits.
+
 The optional [Ruta Consular Telegram service](integrations/telegram/README.md) adds public private-chat access to personal tasks, opt-in reminders and guided B1/B2 or immigrant interview practice. Profile/menu/photo setup and verification are explicit commands. A valid bot token and a continuously running host are required; neither is bundled or activated on installation. The default bot uses deterministic practice, not a generative model, and does not download identity documents or fill applications in chat.
 
 [DS-260 and document preparation](skills/us-immigration-casework/references/ds260-and-documents.md) adds a private worksheet with per-field evidence/confirmation checks, draft exports and optional PDF text AcroForm/Word placeholder filling. It is not the complete conditional CEAC form and does not sign or submit. Scanned PDFs, unsupported controls, signed/active-content files and complex Word layouts need an appropriate separate workflow. Required optional packages: `pypdf` for fillable PDF, `python-docx` for Word, and existing export dependencies for report formats.

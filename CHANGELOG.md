@@ -1,5 +1,14 @@
 # Changelog
 
+## Telegram Cloudflare adapter 2.1.1 — 2026-10-31
+
+- Optional Workers webhook with constant-time secret verification, bounded request bodies and one SQLite Durable Object per private conversation.
+- Persistent alarm-driven replies/reminders, atomic update deduplication, consent and IANA-offset checks, rate/task quotas, inactivity cleanup and deletion.
+- Ambiguous deliveries held without automatic retries; explicit Telegram 429 retry handling and blocked-chat opt-out.
+- Published privacy route, sanitized operational errors, generated binding types and secret-only credential configuration.
+- Secure interactive webhook registrar and workerd/SQLite tests, including isolation, concurrency, eviction and transport failures. No local professional-ledger migration or document processing in the Worker.
+- The portable skill remains 2.1.0; 2.1.1 identifies this optional hosting adapter.
+
 ## 2.1.0 — 2026-10-31
 
 - Ruta Consular optional Telegram service: private-chat task isolation, opt-in timed reminders, guided B1/B2 and immigrant practice, persistent queues and sanitized API errors.

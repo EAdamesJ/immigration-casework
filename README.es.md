@@ -8,6 +8,8 @@ Funciona como un método de investigación y preparación para agentes compatibl
 
 ## v2.1 Ruta Consular en Telegram y DS-260
 
+El [adaptador Cloudflare 2.1.1](integrations/telegram/cloudflare/README.md) añade webhook protegido, un Durable Object SQLite por chat, alarmas persistentes y página de privacidad. Permite alojar el bot sin computadora encendida ni VPS. Incluye configuración de secretos y registro del webhook sin descartar pendientes. No activa cuentas por instalar la skill ni migra expedientes privados; la disponibilidad sigue sujeta al operador y a los proveedores.
+
 La [integración de Telegram](integrations/telegram/README.md) incluye **Ruta Consular**, icono, 16 comandos, tareas por usuario, avisos voluntarios y práctica guiada B1/B2 o de inmigrante. Cualquiera puede empezar en privado cuando el operador ponga en marcha el servicio. Configurar el perfil no mantiene un servidor activo. El bot básico no usa un modelo generativo ni descarga expedientes.
 
 El [módulo DS-260 y documentos](skills/us-immigration-casework/references/ds260-and-documents.md) trabaja en privado con hojas de campos, referencias documentales, confirmación del solicitante y exportación de borradores. También rellena campos de texto PDF AcroForm y marcadores Word `{{KEY}}` con dependencias opcionales. La plantilla no sustituye las preguntas actuales del CEAC; el solicitante revisa y firma. No se promete compatibilidad automática con cualquier documento.

@@ -13,3 +13,9 @@ client-data/
 build/
 dist/
 .casework-install-*/
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+integrations/telegram/cloudflare/worker-configuration.d.ts
