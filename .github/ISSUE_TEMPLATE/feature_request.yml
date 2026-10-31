@@ -1,0 +1,17 @@
+name: Propose an improvement
+description: Explain a concrete workflow improvement with synthetic examples.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem should be solved?
+      description: Describe the workflow without actual private case data.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and verification
+      description: Include source links for procedural claims and how the improvement can be tested.
+    validations:
+      required: true
