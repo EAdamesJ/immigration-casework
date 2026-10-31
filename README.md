@@ -14,6 +14,28 @@ Immigration Casework gives your AI agent a repeatable workflow for researching U
 
 It is an AI research and preparation tool, not a law firm or licensed representative. It does not guarantee outcomes, submit forms, sign documents, or provide private access to government systems.
 
+## v1.2 DS-160 documents and refusal review
+
+Prepare a sourced DS-160 worksheet, compare dates and applicant confirmations, extract scanned documents locally, preserve refusal grounds, and build a curated draft package. The worksheet screens selected fields; it is not the complete conditional CEAC form or a submission service. OCR always starts unverified. Refusal routing does not decide eligibility or infer the officer's reasoning.
+
+| Module | Workflow | Optional local dependency |
+| --- | --- | --- |
+| DS-160 | [Worksheet and review](skills/us-immigration-casework/references/ds160-preparation.md) | None |
+| OCR | [Page and token provenance](skills/us-immigration-casework/references/document-ocr.md) | Tesseract; Poppler for PDF; installed language data |
+| Refusals | [214(b), 221(g), other/mixed grounds](skills/us-immigration-casework/references/refusal-analysis.md) | None |
+| Exports | [MD, HTML, JSON, ZIP; optional PDF/DOCX](skills/us-immigration-casework/references/export-packages.md) | ReportLab for PDF; python-docx for DOCX |
+
+```bash
+python3 skills/us-immigration-casework/scripts/preparation.py ds160 --input /private/case/ds160.json --as-of 2026-10-31
+python3 skills/us-immigration-casework/scripts/preparation.py refusal --input /private/case/refusal.json
+python3 skills/us-immigration-casework/scripts/document_ocr.py --input /private/case/notice.pdf --out /private/case/ocr-001 --document-id E001 --language eng
+python3 skills/us-immigration-casework/scripts/preparation.py export --input /private/case/packet.json --out /private/case/export-001
+```
+
+Copy the blank JSON templates from the skill's assets into a private workspace first; see the [command contract](skills/us-immigration-casework/references/preparation-tools.md). Optional PDF/DOCX: install `reportlab`/`python-docx` separately and use `--formats md html json pdf docx`. The skill installs no binaries or packages. OCR languages must already be available (`tesseract --list-langs`); `spa` is not bundled. ZIP exports are not encrypted or redacted and are never uploaded automatically. Core tests do not require these optional dependencies. The separate Ubuntu engine job installs them and runs synthetic OCR/PDF/DOCX smoke tests. Run that suite locally with `CASEWORK_INTEGRATION=1 python3 -m unittest discover -s tests -p test_document_integration.py -v`.
+
+Example request: “Use us-immigration-casework to prepare my DS-160 worksheet, review the supplied refusal notice and export a draft packet for my attorney. Keep OCR uncertainties and missing facts visible.”
+
 ## What you get
 
 | Capability | Practical result |

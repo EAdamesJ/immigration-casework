@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 — 2026-10-31
+
+- DS-160 preparation worksheet, applicant confirmation and selected consistency checks.
+- Local Tesseract/Poppler OCR with source hashes, page coordinates and unverified text.
+- Refusal triage preserving 214(b), 221(g), mixed and unknown grounds without predictions.
+- Curated Markdown/HTML/JSON/ZIP exports with explicit attachments and SHA-256 manifests; optional PDF/DOCX renderers.
+- Privacy-preserving CLI failures, private output permissions and synthetic regression checks.
+
 ## 1.1.0 — 2026-10-31
 
 - B1/B2 intake and qualitative readiness with no approval predictions.

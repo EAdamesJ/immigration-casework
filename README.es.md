@@ -6,6 +6,21 @@
 
 Funciona como un método de investigación y preparación para agentes compatibles con Agent Skills. Se centra en peticiones familiares y procesos consulares de Estados Unidos. No es un bufete, no se atribuye licencia profesional y no garantiza resultados ni presenta trámites por sí sola.
 
+## v1.2 DS-160 OCR negativas y exportaciones
+
+La nueva versión añade un borrador estructurado del DS-160, revisión de fechas y confirmaciones del solicitante, OCR local de documentos, análisis de negativas y paquetes para revisión profesional. La plantilla cubre campos seleccionados y debe contrastarse con cada pregunta del CEAC vigente. No firma ni presenta solicitudes.
+
+| Módulo | Resultado |
+| --- | --- |
+| [DS-160](skills/us-immigration-casework/references/ds160-preparation.md) | Información pendiente, referencias documentales, coherencia y confirmación del solicitante |
+| [OCR](skills/us-immigration-casework/references/document-ocr.md) | Texto por página, coordenadas, confianza y huella del original; todo comienza sin verificar |
+| [Negativas](skills/us-immigration-casework/references/refusal-analysis.md) | Rutas separadas para 214(b), 221(g), otros fundamentos y varios simultáneos |
+| [Exportaciones](skills/us-immigration-casework/references/export-packages.md) | Markdown, HTML, JSON y ZIP; PDF y DOCX con dependencias opcionales |
+
+Consulta el [contrato de comandos](skills/us-immigration-casework/references/preparation-tools.md) y copia las plantillas JSON a una carpeta privada. El OCR requiere Tesseract y Poppler para PDF; los datos de idioma se instalan aparte. PDF usa ReportLab y DOCX usa python-docx. La instalación de la skill no instala esas dependencias. El ZIP no está cifrado ni anonimizado y no se comparte automáticamente. Las pruebas básicas no requieren dependencias opcionales. Un trabajo separado de Ubuntu instala los motores y ejecuta tres pruebas sintéticas de OCR y exportación PDF/DOCX.
+
+Ejemplo: “Usa us-immigration-casework para preparar mi DS-160, revisar la negativa adjunta y exportar un borrador para mi abogado. Conserva las dudas del OCR y marca los datos faltantes.”
+
 ## Qué incluye
 
 - Reconstrucción del expediente y cronología con estados de verificación.
