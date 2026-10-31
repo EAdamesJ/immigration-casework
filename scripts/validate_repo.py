@@ -58,6 +58,7 @@ def check(root: Path = ROOT) -> list[str]:
             (r"\b(?:IOE|EAC|WAC|LIN|SRC|MSC|NBC|YSC)(?!0{10}\b)\d{10}\b", "possible real receipt identifier"),
             (r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----", "private key"),
             (r"\bgh[pousr]_[A-Za-z0-9]{24,}\b", "GitHub token"),
+            (r"\b\d{6,12}:[A-Za-z0-9_-]{30,}\b", "Telegram bot token"),
             (r"\bsk-proj-[A-Za-z0-9_-]{24,}\b", "API key"),
         ]
         for pattern, label in checks:
