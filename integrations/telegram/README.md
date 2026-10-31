@@ -1,5 +1,9 @@
 # Ruta Consular en Telegram
 
+## Opción sin servidor: Cloudflare Workers
+
+Para operar por webhook sin VPS ni computadora encendida, usa el [adaptador Cloudflare](cloudflare/README.md). Incluye almacenamiento aislado por conversación, alarmas persistentes, privacidad y registro seguro del webhook. El servicio Python descrito a continuación continúa siendo la alternativa de long polling. No ejecutes ambos al mismo tiempo.
+
 Bot público de organización y práctica consular. Cualquier persona puede usarlo en un chat privado; cada usuario ve sus propias tareas. No es un chat de asesoría generativa, no descarga expedientes y no completa ni envía el DS-260 dentro de Telegram. El trabajo documental real se realiza con la skill en un espacio privado.
 
 ## Qué queda preparado
