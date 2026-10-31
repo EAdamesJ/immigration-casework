@@ -10,7 +10,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "us-immigration-casework"
-EXCLUDED = {".git", "__pycache__", ".venv", "build", "dist"}
+EXCLUDED = {".git", "__pycache__", ".venv", "build", "dist", "node_modules", ".wrangler"}
 
 
 def check(root: Path = ROOT) -> list[str]:
@@ -51,7 +51,7 @@ def check(root: Path = ROOT) -> list[str]:
             problems.append("symbolic link is not allowed in publication: " + relative.as_posix())
             continue
         if not file.is_file(): continue
-        if file.suffix.lower() not in {".md", ".py", ".json", ".jsonl", ".yml", ".yaml", ".svg", ".csv", ".txt"}:
+        if file.suffix.lower() not in {".md", ".py", ".ts", ".js", ".jsonc", ".json", ".jsonl", ".yml", ".yaml", ".svg", ".csv", ".txt"}:
             continue
         text = file.read_text(encoding="utf-8")
         checks = [
