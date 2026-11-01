@@ -8,6 +8,7 @@
   "preview_urls": false,
   "secrets": { "required": ["TELEGRAM_BOT_TOKEN", "WEBHOOK_SECRET"] },
   "durable_objects": {
+    "code_update_strategy": { "mode": "immediate" },
     "bindings": [{ "name": "CHATS", "class_name": "ConsularChat" }]
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ConsularChat"] }],

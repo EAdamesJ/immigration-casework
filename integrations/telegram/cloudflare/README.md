@@ -1,6 +1,6 @@
 # Ruta Consular en Cloudflare
 
-Adaptador de webhook 2.1.1 para el bot de Telegram. Funciona en Workers con un Durable Object SQLite por conversación y alarmas persistentes para respuestas, recordatorios y limpieza. No necesita VPS, Docker, cron externo ni una computadora encendida. La disponibilidad depende de Cloudflare, Telegram, los límites de la cuenta y la operación del servicio; no hay garantía de entrega o disponibilidad absoluta.
+Adaptador de webhook 2.1.2 para el bot de Telegram. Funciona en Workers con un Durable Object SQLite por conversación y alarmas persistentes para respuestas, recordatorios y limpieza. No necesita VPS, Docker, cron externo ni una computadora encendida. La disponibilidad depende de Cloudflare, Telegram, los límites de la cuenta y la operación del servicio; no hay garantía de entrega o disponibilidad absoluta.
 
 ## Funciones y límites
 
@@ -53,6 +53,10 @@ La suite incluye aislamiento en SQLite real de workerd, deduplicación concurren
 ## Operación y recuperación
 
 El webhook confirma recepción únicamente después de guardar el cambio y programar una alarma. Los identificadores técnicos de actualización evitan repetir cambios durante siete días. Cada mensaje de salida se marca antes de contactar a Telegram. Solo un 429 explícito permite reintento después de `retry_after`; una respuesta ambigua se marca `unknown`, sin reenvío automático. Una interrupción durante el envío se considera incierta después de dos minutos. Puede perderse un aviso: no uses el bot como único recordatorio de un plazo oficial.
+
+Desde 2.1.2 la petición de salida usa `redirect: "manual"` y rechaza cualquier respuesta 3xx. Workers no admite `redirect: "error"`: ese valor impedía enviar mensajes aunque el webhook recibiera y confirmara las actualizaciones. La base guarda únicamente la fecha, códigos y categoría del último resultado de envío para distinguir recepción de entrega, sin credenciales ni texto del error. Los arranques recuperan la programación a partir del estado persistido; no reenvían resultados inciertos automáticamente. El operador puede inspeccionar esos datos técnicos mediante el acceso administrativo de Cloudflare. Una prueba real de recepción sigue siendo distinta de una prueba con Telegram simulado.
+
+La configuración aplica actualizaciones de Durable Objects de forma inmediata para que una corrección no quede aplazada en conversaciones activas. Un despliegue puede interrumpir trabajo en curso: la cola conserva los cambios y mantiene como inciertos los envíos cuyo resultado no se pudo confirmar. Para despliegues que necesiten una estrategia diferida, revisa explícitamente ese ajuste y su demora antes de publicar.
 
 Los avisos requieren activación expresa; desactivarlos cancela pendientes, aunque un envío iniciado puede terminar. Las tareas y preferencias caducan después de 90 días sin comandos. `/borrar confirmar` elimina datos activos; su confirmación puede retener temporalmente el chat ID. Los elementos inciertos caducan a los siete días. El borrado no elimina historial de Telegram ni garantiza eliminación inmediata de copias del proveedor. No se registra texto de mensajes, tokens o documentos en logs de aplicación; las trazas e invocation logs están desactivados. Los errores de almacenamiento producen un evento genérico.
 
