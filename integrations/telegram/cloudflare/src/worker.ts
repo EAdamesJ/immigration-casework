@@ -51,6 +51,7 @@ export class ConsularChat extends DurableObject<Env> {
     this.ctx.storage.sql.exec('CREATE TABLE IF NOT EXISTS state (id INTEGER PRIMARY KEY CHECK(id=1), body TEXT NOT NULL)');
     this.ctx.storage.sql.exec('CREATE TABLE IF NOT EXISTS updates (id INTEGER PRIMARY KEY, seen INTEGER NOT NULL)');
     this.ctx.storage.sql.exec('CREATE INDEX IF NOT EXISTS updates_seen ON updates(seen)');
+    this.ctx.blockConcurrencyWhile(async () => { await this.arm(); });
   }
   private read(): State | null {
     const row = this.ctx.storage.sql.exec<{ body: string }>('SELECT body FROM state WHERE id=1').toArray()[0];
@@ -110,6 +111,7 @@ export class ConsularChat extends DurableObject<Env> {
       const result = await send(this.env.TELEGRAM_BOT_TOKEN, item.chat, item.text);
       this.ctx.storage.transactionSync(() => {
         const s = this.read(); if (!s) return;
+        s.lastDelivery = { at: Date.now(), code: result.code, httpStatus: result.httpStatus, reason: result.reason };
         const current = s.outbox.find(x => x.id === item.id); if (!current) return;
         if (result.code === 429) {
           current.status = 'pending'; current.due = Date.now() + Math.max(1000, result.retry * 1000);
@@ -124,26 +126,35 @@ export class ConsularChat extends DurableObject<Env> {
     }
   }
 }
-async function send(token: string, chat: number, text: string): Promise<{ code: number; retry: number }> {
-  if (!/^\d+:[A-Za-z0-9_-]{20,}$/.test(token ?? '')) return { code: 0, retry: 0 };
+async function send(token: string, chat: number, text: string): Promise<{ code: number; retry: number; httpStatus: number; reason: string }> {
+  if (!/^\d+:[A-Za-z0-9_-]{20,}$/.test(token ?? '')) return { code: 0, retry: 0, httpStatus: 0, reason: 'configuration' };
+  let httpStatus = 0;
   try {
     const response = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
-      method: 'POST', redirect: 'error', signal: AbortSignal.timeout(8000),
+      method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(8000),
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_id: chat, text, protect_content: true, reply_markup: KEYBOARD, link_preview_options: { is_disabled: true } }),
     });
+    httpStatus = response.status;
+    if (httpStatus >= 300 && httpStatus < 400) {
+      await response.body?.cancel();
+      return { code: 0, retry: 0, httpStatus, reason: 'redirect_rejected' };
+    }
     const data: unknown = JSON.parse(await limitedText(response.body, 32_768));
-    if (!record(data)) return { code: 0, retry: 0 };
-    if (response.ok && data.ok === true) return { code: 200, retry: 0 };
+    if (!record(data)) return { code: 0, retry: 0, httpStatus, reason: 'invalid_response' };
+    if (response.ok && data.ok === true) return { code: 200, retry: 0, httpStatus, reason: 'accepted' };
     const code = Number(data.error_code), params = record(data.parameters) ? data.parameters : {};
-    return { code, retry: Math.min(3600, Math.max(1, Number(params.retry_after) || 1)) };
-  } catch { return { code: 0, retry: 0 }; }
+    return { code, retry: Math.min(3600, Math.max(1, Number(params.retry_after) || 1)), httpStatus, reason: 'telegram_rejection' };
+  } catch (error) {
+    const name = error instanceof Error ? error.name : '';
+    return { code: 0, retry: 0, httpStatus, reason: name === 'SyntaxError' ? 'invalid_json' : name === 'TimeoutError' || name === 'AbortError' ? 'timeout' : name === 'TypeError' ? 'type_error' : 'network_or_runtime' };
+  }
 }
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const path = new URL(request.url).pathname;
     if (request.method === 'GET' && (path === '/' || path === '/privacidad')) return reply(page(env, path === '/privacidad'), 200, 'text/html; charset=utf-8');
-    if (request.method === 'GET' && path === '/health') return reply(JSON.stringify({ service: 'ruta-consular', version: '2.1.1', ready: configured(env) }), configured(env) ? 200 : 503, 'application/json');
+    if (request.method === 'GET' && path === '/health') return reply(JSON.stringify({ service: 'ruta-consular', version: '2.1.2', ready: configured(env) }), configured(env) ? 200 : 503, 'application/json');
     if (path !== '/telegram/webhook') return reply('Not found', 404);
     if (request.method !== 'POST') return reply('Method not allowed', 405);
     if (!configured(env)) return reply('Service not configured', 503);

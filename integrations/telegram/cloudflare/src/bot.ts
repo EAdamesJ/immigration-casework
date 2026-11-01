@@ -13,6 +13,7 @@ export interface State {
   zone: string | null; alerts: boolean; practice: { mode: Mode; index: number; skipped: number } | null;
   nextTask: number; tasks: { id: number; title: string }[];
   reminders: { due: number; title: string }[]; outbox: Outgoing[];
+  lastDelivery?: { at: number; code: number; httpStatus: number; reason: string };
 }
 export interface Config { contact: string; privacy: string }
 export function initial(chat: number, now: number): State {
