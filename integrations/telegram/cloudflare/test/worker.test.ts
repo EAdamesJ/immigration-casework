@@ -42,6 +42,20 @@ describe('Webhook and real SQLite Durable Objects', () => {
   });
   it('alarm sends queued replies then removes confirmed data', async () => {
     await post(update(1, 1, '/start')); await runDurableObjectAlarm(chat(1)); expect(fetch).toHaveBeenCalled(); expect((await read(1))?.outbox).toHaveLength(0);
+    expect((await read(1))?.lastDelivery).toMatchObject({ code: 200, httpStatus: 200, reason: 'accepted' });
+  });
+  it('uses the redirect mode supported by deployed Cloudflare Workers', async () => {
+    vi.mocked(fetch).mockImplementation(async (_url, options) => {
+      if (options?.redirect === 'error') throw new TypeError('Invalid redirect value');
+      expect(options?.redirect).toBe('manual');
+      return Response.json({ ok: true, result: { message_id: 1 } });
+    });
+    await post(update(1, 1, '/start')); await runDurableObjectAlarm(chat(1)); expect((await read(1))?.lastDelivery?.code).toBe(200);
+  });
+  it('refuses redirects without sending credentials to a new destination', async () => {
+    vi.mocked(fetch).mockImplementation(async () => new Response(null, { status: 302, headers: { Location: 'https://elsewhere.example/collect' } }));
+    await post(update(1, 1, '/start')); await runDurableObjectAlarm(chat(1));
+    expect(vi.mocked(fetch)).toHaveBeenCalledTimes(1); expect((await read(1))?.lastDelivery).toMatchObject({ code: 0, httpStatus: 302, reason: 'redirect_rejected' }); expect((await read(1))?.outbox[0].status).toBe('unknown');
   });
   it('holds ambiguous sends without retry after eviction', async () => {
     vi.mocked(fetch).mockRejectedValue(new Error('network outcome unknown'));
