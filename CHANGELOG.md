@@ -1,5 +1,12 @@
 # Changelog
 
+## Telegram Cloudflare adapter 2.1.2 — 2026-10-31
+
+- Fix live Telegram replies: Workers rejects `redirect: "error"` before making a network request. Use supported manual mode and explicitly refuse 3xx redirects.
+- Record sanitized delivery outcome codes privately; webhook acceptance and format-only health are not proof of message delivery.
+- Recover alarms from persisted state when a Durable Object starts. Unknown deliveries remain held without automatic retry.
+- Add production-contract regression tests for redirect mode and credential-safe redirect refusal. The portable skill remains 2.1.0.
+
 ## Telegram Cloudflare adapter 2.1.1 — 2026-10-31
 
 - Optional Workers webhook with constant-time secret verification, bounded request bodies and one SQLite Durable Object per private conversation.
